@@ -16,14 +16,17 @@ describe("Surveys", () => {
     });
 
     expect(response.status).toBe(201);
+    expect(response.body).toHaveProperty("id");
   });
 
-  it("Should not be able to create a user with exists email", async () => {
-    const response = await request(app).post("/users").send({
-      email: "user@example.com",
-      name: "User Example",
+  it("Should be able to get all surveys", async () => {
+    await request(app).post("/surveys").send({
+      title: "Title Example",
+      description: "Description Example"
     });
 
-    expect(response.status).toBe(400);
-  });
+    const response = await request(app).get("/surveys");
+
+    expect(response.body.length).toBe(2);
+  })
 });
