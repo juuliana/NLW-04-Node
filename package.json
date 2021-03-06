@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
-    "test": "set NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest",
+    "posttest": "rm ./src/database/database.test.sqlite"
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -18,7 +19,6 @@
   "devDependencies": {
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.20",
-    "@types/mocha": "^8.2.1",
     "@types/supertest": "^2.0.10",
     "@types/uuid": "^8.3.0",
     "jest": "^26.6.3",
